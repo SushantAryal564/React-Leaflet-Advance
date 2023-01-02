@@ -1,5 +1,13 @@
 import { Marker, Popup } from "react-leaflet";
 import { defaultIcon } from "./../Components/icons/defaultIcon";
+import { Card } from "antd";
+const PopupStatistics = () => {
+  return (
+    <Card type="inner" title="Name">
+      Inner Card content
+    </Card>
+  );
+};
 const MarkerLayer = ({ features }) => {
   return features.map((feature) => {
     const { coordinates } = feature.geometry;
@@ -10,7 +18,7 @@ const MarkerLayer = ({ features }) => {
         icon={defaultIcon}
       >
         <Popup>
-          A pretty CSS3 popup. <br /> Easily customized.
+          <PopupStatistics />
         </Popup>
       </Marker>
     );
