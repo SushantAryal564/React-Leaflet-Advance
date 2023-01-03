@@ -27,7 +27,27 @@ const PopupStatistics = ({ feature, setRadiusFilter }) => {
             type="primary"
             shape="round"
             icon={<FilterOutlined />}
-            onClick={() => setRadiusFilter({ feature, radius })}
+            // onClick={() => setRadiusFilter({ feature, radius })}
+            onClick={() =>
+              setRadiusFilter((prevState) => {
+                let newFilter;
+                if (prevState) {
+                  if (radius === 0) {
+                    newFilter = prevState;
+                  } else {
+                    const sameFeature = prevState.feature === feature;
+                    const sameRadiius = prevState.feature === radius;
+                    if (!sameFeature || !sameRadiius) {
+                      newFilter = { feature, radius };
+                    }
+                  }
+                } else if (radius !== 0) {
+                  newFilter = { feature, radius };
+                }
+                console.log("I am what", newFilter);
+                return newFilter;
+              })
+            }
           >
             Filter by km
           </Button>
@@ -49,7 +69,6 @@ const MarkerLayer = ({ features, setRadiusFilter, getRadiusFilter }) => {
       if (centerPoint) {
         const { coordinates } = currentFeature.geometry;
         const currentPoint = L.latLng(coordinates[1], coordinates[0]);
-        console.log(centerPoint.distanceTo(currentPoint));
         return (
           centerPoint.distanceTo(currentPoint) / 1000 < radiusFilter.radius
         );
