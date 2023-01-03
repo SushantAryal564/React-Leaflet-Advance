@@ -13,7 +13,6 @@ Control.FitBoundsToDataControl = Control.extend({
     const doFitDataToBounds = () => {
       const latLngs = [];
       map.eachLayer((layer) => {
-        console.log(layer);
         const latLng = layer._latlng;
         if (latLng) {
           latLngs.push(latLng);
