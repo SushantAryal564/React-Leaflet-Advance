@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { useEffect, React, useState } from "react";
 import { LayersControl, MapContainer, TileLayer } from "react-leaflet";
 import { cities } from "./../Data/cities";
 import MarkerLayer from "../Layers/marker_layer";
@@ -14,6 +14,18 @@ export const Map = (props) => {
   const getGeoFilter = () => geoFilter;
   const [radiusFilter, setRadiusFilter] = useState(null);
   const getRadiusFilter = () => radiusFilter;
+  const [asyncCities, setAsyncCities] = useState({ features: [] });
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_populated_places.geojson"
+      );
+      const data = await response.json();
+      setAsyncCities(data);
+    };
+    fetchData().catch(console.error);
+  }, []);
+  console.log(asyncCities);
   return (
     <MapContainer center={[0, 0]} zoom={5} scrollWheelZoom={true}>
       <LayersControl position="topright">
@@ -30,7 +42,7 @@ export const Map = (props) => {
           <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}" />
         </LayersControl.BaseLayer>
         <MarkerLayer
-          features={cities.features}
+          features={asyncCities.features}
           setRadiusFilter={setRadiusFilter}
           getRadiusFilter={getRadiusFilter}
           getGeoFilter={getGeoFilter}
