@@ -19,7 +19,7 @@ export const RadiusFilter = ({ radiusFilter, setRadiusFilter }) => {
       />
     );
     return (
-      <LayersControl.Overlay checked name="Radius Filter">
+      <LayersControl.Overlay name="Radius Filter">
         {layer}
       </LayersControl.Overlay>
     );

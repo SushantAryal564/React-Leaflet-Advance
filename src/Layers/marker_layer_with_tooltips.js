@@ -34,7 +34,7 @@ const MarkerLayerWithTooltip = ({ features }) => {
     );
   });
   return (
-    <LayersControl.Overlay checked name="Highest Point">
+    <LayersControl.Overlay name="Highest Point">
       <LayerGroup>{layer}</LayerGroup>{" "}
     </LayersControl.Overlay>
   );

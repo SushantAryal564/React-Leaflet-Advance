@@ -23,7 +23,12 @@ export const Map = (props) => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
         </LayersControl.BaseLayer>
-
+        <LayersControl.BaseLayer name="World Imagery">
+          <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />
+        </LayersControl.BaseLayer>
+        <LayersControl.BaseLayer name="National Geography">
+          <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}" />
+        </LayersControl.BaseLayer>
         <MarkerLayer
           features={cities.features}
           setRadiusFilter={setRadiusFilter}
