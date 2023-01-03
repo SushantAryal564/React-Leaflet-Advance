@@ -36,15 +36,14 @@ const PopupStatistics = ({ feature, setRadiusFilter }) => {
                     newFilter = prevState;
                   } else {
                     const sameFeature = prevState.feature === feature;
-                    const sameRadiius = prevState.feature === radius;
-                    if (!sameFeature || !sameRadiius) {
+                    const sameRadius = prevState.radius === radius;
+                    if (!sameFeature || !sameRadius) {
                       newFilter = { feature, radius };
                     }
                   }
                 } else if (radius !== 0) {
                   newFilter = { feature, radius };
                 }
-                console.log("I am what", newFilter);
                 return newFilter;
               })
             }

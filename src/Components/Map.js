@@ -4,6 +4,7 @@ import { cities } from "./../Data/cities";
 import MarkerLayer from "../Layers/marker_layer";
 import MarkerLayerWithTooltip from "../Layers/marker_layer_with_tooltips";
 import { mountains } from "../Data/highest_points";
+import { RadiusFilter } from "../Layers/radius_filter";
 export const Map = (props) => {
   const [radiusFilter, setRadiusFilter] = useState(null);
   const getRadiusFilter = () => radiusFilter;
@@ -19,6 +20,10 @@ export const Map = (props) => {
         getRadiusFilter={getRadiusFilter}
       />
       <MarkerLayerWithTooltip features={mountains.features} />
+      <RadiusFilter
+        radiusFilter={radiusFilter}
+        setRadiusFilter={setRadiusFilter}
+      />
     </MapContainer>
   );
 };
