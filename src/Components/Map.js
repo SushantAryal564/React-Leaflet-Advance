@@ -7,7 +7,10 @@ import { mountains } from "../Data/highest_points";
 import { RadiusFilter } from "../Layers/radius_filter";
 import { continents } from "./../Data/continents";
 import { ContinentsPolygonLayer } from "../Layers/continents_polygon_layers";
+
 export const Map = (props) => {
+  const [geoFilter, setGeofilter] = useState(null);
+  const getGeoFilter = () => geoFilter;
   const [radiusFilter, setRadiusFilter] = useState(null);
   const getRadiusFilter = () => radiusFilter;
   return (
@@ -20,13 +23,18 @@ export const Map = (props) => {
         features={cities.features}
         setRadiusFilter={setRadiusFilter}
         getRadiusFilter={getRadiusFilter}
+        getGeoFilter={getGeoFilter}
       />
       <MarkerLayerWithTooltip features={mountains.features} />
       <RadiusFilter
         radiusFilter={radiusFilter}
         setRadiusFilter={setRadiusFilter}
       />
-      <ContinentsPolygonLayer data={continents} />
+      <ContinentsPolygonLayer
+        data={continents}
+        setGeoFilter={setGeofilter}
+        getGeoFilter={getGeoFilter}
+      />
     </MapContainer>
   );
 };
