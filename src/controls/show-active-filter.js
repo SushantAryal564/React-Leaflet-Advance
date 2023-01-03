@@ -17,7 +17,6 @@ export const ShowActiveFiltersControl = ({ getFilters }) => {
       )}, Lon: ${round(coordinates[0])}) Radius: ${radius} km`;
       filtersToDisplay.push(radiusFilterToDisplay);
     }
-    console.log(filtersToDisplay);
     return filtersToDisplay.length > 0
       ? filtersToDisplay
       : ["No Filter Active"];

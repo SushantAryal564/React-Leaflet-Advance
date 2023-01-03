@@ -9,6 +9,7 @@ import { continents } from "./../Data/continents";
 import { ContinentsPolygonLayer } from "../Layers/continents_polygon_layers";
 import { FitBoundsToDataControl } from "../controls/fit_data_to_bounds";
 import { ShowActiveFiltersControl } from "../controls/show-active-filter";
+import MarkerLayerWithTooltipCluster from "../Layers/marker_layer_with_tooltips_cluster";
 export const Map = (props) => {
   const [geoFilter, setGeofilter] = useState(null);
   const getGeoFilter = () => geoFilter;
@@ -25,7 +26,6 @@ export const Map = (props) => {
     };
     fetchData().catch(console.error);
   }, []);
-  console.log(asyncCities);
   return (
     <MapContainer center={[0, 0]} zoom={5} scrollWheelZoom={true}>
       <LayersControl position="topright">
@@ -48,6 +48,7 @@ export const Map = (props) => {
           getGeoFilter={getGeoFilter}
         />
         <MarkerLayerWithTooltip features={mountains.features} />
+        <MarkerLayerWithTooltipCluster data={cities} />
         <RadiusFilter
           radiusFilter={radiusFilter}
           setRadiusFilter={setRadiusFilter}
