@@ -1,4 +1,4 @@
-import { Marker, Popup } from "react-leaflet";
+import { Marker, Popup, LayersControl, LayerGroup } from "react-leaflet";
 import { defaultIcon } from "./../Components/icons/defaultIcon";
 import { Button, Card, InputNumber, Space } from "antd";
 import { Fragment, useState } from "react";
@@ -70,7 +70,7 @@ const MarkerLayer = ({
     const coordinates = radiusFilter.feature.geometry.coordinates;
     centerPoint = L.latLng(coordinates[1], coordinates[0]);
   }
-  return features
+  const layer = features
     .filter((currentFeature) => {
       let filterByRadius;
       let filterByGeo;
@@ -110,5 +110,10 @@ const MarkerLayer = ({
         </Marker>
       );
     });
+  return (
+    <LayersControl.Overlay checked name="World Cities">
+      <LayerGroup>{layer}</LayerGroup>
+    </LayersControl.Overlay>
+  );
 };
 export default MarkerLayer;
