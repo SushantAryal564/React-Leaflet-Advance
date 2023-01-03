@@ -2,3 +2,6 @@
   width: 100%;
   height: 100vh;
 }
+.fit-bounds-control-container {
+  display: grid;
+}

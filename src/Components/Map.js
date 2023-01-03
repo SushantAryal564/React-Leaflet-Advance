@@ -7,14 +7,14 @@ import { mountains } from "../Data/highest_points";
 import { RadiusFilter } from "../Layers/radius_filter";
 import { continents } from "./../Data/continents";
 import { ContinentsPolygonLayer } from "../Layers/continents_polygon_layers";
-
+import { FitBoundsToDataControl } from "../controls/fit_data_to_bounds";
 export const Map = (props) => {
   const [geoFilter, setGeofilter] = useState(null);
   const getGeoFilter = () => geoFilter;
   const [radiusFilter, setRadiusFilter] = useState(null);
   const getRadiusFilter = () => radiusFilter;
   return (
-    <MapContainer center={[0, 0]} zoom={1} scrollWheelZoom={true}>
+    <MapContainer center={[0, 0]} zoom={5} scrollWheelZoom={true}>
       <LayersControl position="topright">
         <LayersControl.BaseLayer checked name="OSM Streets">
           <TileLayer
@@ -40,6 +40,7 @@ export const Map = (props) => {
           getGeoFilter={getGeoFilter}
         />
       </LayersControl>
+      <FitBoundsToDataControl />
     </MapContainer>
   );
 };
