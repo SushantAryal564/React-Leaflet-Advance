@@ -9,9 +9,13 @@ export const RadiusFilter = ({ radiusFilter, setRadiusFilter }) => {
         radius={radiusFilter.radius * 1000}
         eventHandlers={{
           dblclick: (e) => {
+            e.originalEvent.view.L.DomEvent.stopPropagation(e);
             setRadiusFilter(null);
           },
         }}
+        color={"gray"}
+        weight={1}
+        fillOpacity={0.4}
       />
     );
   } else {
